@@ -1,0 +1,48 @@
+app-id: io.github.lipeaaraujo.stl2thumbnail
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: stl2thumbnail
+
+finish-args:
+  - --filesystem=host:ro
+  - --filesystem=xdg-cache
+  - --filesystem=/tmp
+
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/doc
+  - '*.a'
+
+modules:
+  - name: glm
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DGLM_BUILD_TESTS=OFF
+      - -DBUILD_SHARED_LIBS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/g-truc/glm/archive/refs/tags/1.0.3.tar.gz
+        sha256: 6775e47231a446fd086d660ecc18bcd076531cfedd912fbd66e576b118607001
+
+  - name: stl2thumbnail
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_GENERATOR_KDE=OFF
+      - -DBUILD_GENERATOR_GNOME=ON
+    sources:
+      - type: git
+        url: https://github.com/krepa098/stl2thumbnail.git
+        commit: 51ee78e8eb0bad8519d2b2cc55190e125e47ffaf
+      - type: file
+        path: stl.thumbnailer
+      - type: file
+        path: io.github.lipeaaraujo.stl2thumbnail.metainfo.xml
+    post-install:
+      - install -Dm644 stl.thumbnailer /app/share/thumbnailers/stl.thumbnailer
+      - install -Dm644 io.github.lipeaaraujo.stl2thumbnail.metainfo.xml
+          /app/share/metainfo/io.github.lipeaaraujo.stl2thumbnail.metainfo.xml

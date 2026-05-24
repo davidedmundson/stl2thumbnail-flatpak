@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>io.github.lipeaaraujo.stl2thumbnail</id>
+  <extends>org.kde.dolphin</extends>
+  <name>STL Thumbnailer</name>
+  <summary>Generate thumbnail previews for STL 3D model files</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <description>
+    <p>
+      A standalone thumbnailer that generates preview images for STL
+      (stereolithography) 3D model files. Uses a software rasterizer,
+      so no GPU access is required.
+    </p>
+    <p>
+      Packaged from upstream stl2thumbnail by krepa098.
+    </p>
+  </description>
+
+  <url type="homepage">https://github.com/krepa098/stl2thumbnail</url>
+  <url type="bugtracker">https://github.com/lipeaaraujo/stl2thumbnail-flatpak/issues</url>
+
+  <developer id="io.github.lipeaaraujo">
+    <name>Felipe Araujo</name>
+  </developer>
+
+  <content_rating type="oars-1.1" />
+
+  <releases>
+    <release version="0.1.0" date="2026-05-24">
+      <description>
+        <p>Initial Flatpak packaging for review.</p>
+      </description>
+    </release>
+  </releases>
+</component>

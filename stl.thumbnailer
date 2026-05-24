@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=flatpak
+Exec=flatpak run --command=stl2thumbnail io.github.lipeaaraujo.stl2thumbnail --width=%s --height=%s --if=%i --of=%o
+MimeType=model/stl;application/sla;model/x.stl-ascii;model/x.stl-binary;
