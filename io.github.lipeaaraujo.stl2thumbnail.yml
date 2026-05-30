@@ -43,6 +43,6 @@ modules:
       - type: file
         path: io.github.lipeaaraujo.stl2thumbnail.metainfo.xml
     post-install:
-      - install -Dm644 stl.thumbnailer /app/share/thumbnailers/stl.thumbnailer
+      - install -Dm644 stl.thumbnailer /app/share/thumbnailers/io.github.lipeaaraujo.stl2thumbnail.thumbnailer
       - install -Dm644 io.github.lipeaaraujo.stl2thumbnail.metainfo.xml
           /app/share/metainfo/io.github.lipeaaraujo.stl2thumbnail.metainfo.xml
