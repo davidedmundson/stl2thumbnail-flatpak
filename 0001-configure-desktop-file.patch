@@ -1,0 +1,56 @@
+From 45562cdace84160d4c1d94926bea9c661beaeec2 Mon Sep 17 00:00:00 2001
+From: David Edmundson <kde@davidedmundson.co.uk>
+Date: Sun, 31 May 2026 19:52:39 +0300
+Subject: [PATCH] configure desktop file
+
+---
+ generators/gnome/CMakeLists.txt     | 8 +++++++-
+ generators/gnome/stl.thumbnailer    | 4 ----
+ generators/gnome/stl.thumbnailer.in | 4 ++++
+ 3 files changed, 11 insertions(+), 5 deletions(-)
+ delete mode 100644 generators/gnome/stl.thumbnailer
+ create mode 100644 generators/gnome/stl.thumbnailer.in
+
+diff --git a/generators/gnome/CMakeLists.txt b/generators/gnome/CMakeLists.txt
+index 5eb8783..422830a 100644
+--- a/generators/gnome/CMakeLists.txt
++++ b/generators/gnome/CMakeLists.txt
+@@ -22,8 +22,14 @@ add_executable (
+ 
+ target_link_libraries(${PROJECT_NAME} ${LIBS})
+ 
++configure_file(
++    "stl.thumbnailer.in"
++    "${CMAKE_CURRENT_BINARY_DIR}/stl.thumbnailer"
++    @ONLY
++)
++
+ install(TARGETS ${PROJECT_NAME}
+     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+ )
+ 
+-install(FILES "stl.thumbnailer" DESTINATION "share/thumbnailers")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/stl.thumbnailer" DESTINATION "share/thumbnailers")
+diff --git a/generators/gnome/stl.thumbnailer b/generators/gnome/stl.thumbnailer
+deleted file mode 100644
+index fa68689..0000000
+--- a/generators/gnome/stl.thumbnailer
++++ /dev/null
+@@ -1,4 +0,0 @@
+-[Thumbnailer Entry]
+-TryExec=/usr/bin/stl2thumbnail
+-Exec=/usr/bin/stl2thumbnail --width=%s --height=%s --if=%i --of=%o 
+-MimeType=model/stl;application/sla;model/x.stl-ascii;model/x.stl-binary;
+diff --git a/generators/gnome/stl.thumbnailer.in b/generators/gnome/stl.thumbnailer.in
+new file mode 100644
+index 0000000..e17fd0e
+--- /dev/null
++++ b/generators/gnome/stl.thumbnailer.in
+@@ -0,0 +1,4 @@
++[Thumbnailer Entry]
++TryExec=@CMAKE_INSTALL_FULL_BINDIR@/stl2thumbnail
++Exec=@CMAKE_INSTALL_FULL_BINDIR@/stl2thumbnail --width=%s --height=%s --if %i --of %o 
++MimeType=model/stl;application/sla;model/x.stl-ascii;model/x.stl-binary;
+-- 
+2.53.0
+
